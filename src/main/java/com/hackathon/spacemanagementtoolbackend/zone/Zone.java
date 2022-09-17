@@ -16,5 +16,7 @@ public class Zone {
 
     private int floorId;
 
-    private int zoneName;
+    private int teamId;
+
+    private String zoneName;
 }

@@ -39,14 +39,9 @@ public class TeamFloorZoneController {
     }
 
     @GetMapping("/getZones")
-    public List<Zone> getZoneByTeamIdAndFloorId(@RequestParam("teamId") int teamId){
-        List<TeamFloorZone> teamFloorZoneList = teamFloorZoneService.getAllByTeamId(teamId);
-        List<Zone> zoneList = new ArrayList<>();
+    public List<Zone> getZoneByTeamIdAndFloorId(@RequestParam("teamId") int teamId, @RequestParam("floorId") int floorId){
 
-        for(TeamFloorZone teamFloorZone: teamFloorZoneList)
-        {
-            zoneList.add(zoneService.getZoneData(teamFloorZone.getZoneId()));
-        }
-        return zoneList;
+        return zoneService.getZoneData(teamId, floorId);
+
     }
 }
