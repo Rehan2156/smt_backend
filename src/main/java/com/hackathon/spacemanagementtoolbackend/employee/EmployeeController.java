@@ -28,10 +28,10 @@ public class EmployeeController {
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody Employee employee, HttpServletRequest request){
 
-        if(employeeService.usernameNotFound(employee.getUsername(),employee.getPassword()))
+        if(employeeService.usernameNotFound(employee.getUserName(),employee.getPassWord()))
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Invalid credentials");
 
-        return ResponseEntity.ok(employeeService.getEmployeeByUsername(employee.getUsername()));
+        return ResponseEntity.ok(employeeService.getEmployeeByUsername(employee.getUserName()));
     }
 
 }

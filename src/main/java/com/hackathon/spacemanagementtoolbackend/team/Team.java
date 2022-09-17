@@ -19,14 +19,8 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String team;
-    private String oecode;
+    private String oeCode;
 
 
 }
 
-@Repository
-interface TeamRepository extends JpaRepository<Team, Integer>{
-
-    Team findById(int id);
-
-}

@@ -1,42 +1,30 @@
 package com.hackathon.spacemanagementtoolbackend.employee;
-import com.hackathon.spacemanagementtoolbackend.team.Team;
+
 import lombok.Data;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 
 @Entity
 @Data
+@Table(name = "employee")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    private String username;
-    private String password;
+    private String userName;
+    private String passWord;
 
     private int teamId;
 
     private int totalSeats;
 
-    public Employee(String username, String password, int teamId, int totalSeats) {
-        this.username = username;
-        this.password = password;
+    public Employee(String userName, String passWord, int teamId, int totalSeats) {
+        this.userName = userName;
+        this.passWord = passWord;
         this.teamId = teamId;
         this.totalSeats = totalSeats;
     }
 
-    public Employee() {
-
-    }
 }
 
-@Repository
-interface EmployeeRepository extends JpaRepository<Employee, Long>{
-    ArrayList<Employee> findAll();
-    Employee findEmployeeByUsername(String username);
-    boolean existsByUsernameAndPassword(String username,String password);
-}

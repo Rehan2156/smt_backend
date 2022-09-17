@@ -1,5 +1,6 @@
 package com.hackathon.spacemanagementtoolbackend.teamfloorzone;
 
+import com.hackathon.spacemanagementtoolbackend.team.Team;
 import lombok.Data;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -18,13 +19,6 @@ public class TeamFloorZone {
     private String teamId;
     private String floorId;
 
-
-}
-
-@Repository
-interface TeamRepository extends JpaRepository<com.hackathon.spacemanagementtoolbackend.team.Team, Integer> {
-
-    com.hackathon.spacemanagementtoolbackend.team.Team findById(int id);
 
 }
 

@@ -26,12 +26,5 @@ public class TeamsUnderEmployee {
     }
 }
 
-@Repository
-interface TeamsUnderEmployeeRepository extends JpaRepository<TeamsUnderEmployee, Long> {
-    ArrayList<TeamsUnderEmployee> findAll();
 
-
-    List<TeamsUnderEmployee> findAllByEmployeeId(int employeeId );
-
-}
 
