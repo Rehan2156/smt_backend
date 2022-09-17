@@ -17,6 +17,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+
     private int id;
     private String team;
     private String oeCode;
