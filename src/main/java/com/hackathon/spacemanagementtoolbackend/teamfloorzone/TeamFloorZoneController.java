@@ -2,6 +2,8 @@ package com.hackathon.spacemanagementtoolbackend.teamfloorzone;
 
 import com.hackathon.spacemanagementtoolbackend.floor.Floor;
 import com.hackathon.spacemanagementtoolbackend.floor.FloorService;
+import com.hackathon.spacemanagementtoolbackend.zone.Zone;
+import com.hackathon.spacemanagementtoolbackend.zone.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,9 @@ public class TeamFloorZoneController {
     @Autowired
     FloorService floorService;
 
+    @Autowired
+    ZoneService zoneService;
+
     @GetMapping("/getFloors")
     public List<Floor> getFloorByTeamId(@RequestParam("teamId") int teamId)
     {
@@ -31,5 +36,17 @@ public class TeamFloorZoneController {
         }
 
         return floorList;
+    }
+
+    @GetMapping("/getZones")
+    public List<Zone> getZoneByTeamIdAndFloorId(@RequestParam("teamId") int teamId){
+        List<TeamFloorZone> teamFloorZoneList = teamFloorZoneService.getAllByTeamId(teamId);
+        List<Zone> zoneList = new ArrayList<>();
+
+        for(TeamFloorZone teamFloorZone: teamFloorZoneList)
+        {
+            zoneList.add(zoneService.getZoneData(teamFloorZone.getZoneId()));
+        }
+        return zoneList;
     }
 }
