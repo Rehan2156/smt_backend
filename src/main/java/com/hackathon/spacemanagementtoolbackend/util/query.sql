@@ -89,3 +89,12 @@ CREATE TABLE teamfloorzone(id int primary key auto_increment, team_id int, floor
 INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 1, 1, 1, 100);
 INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 1, 2, 1, 100);
 INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 2, 3, 1, 100);
+
+CREATE TABLE seat(id int primary key auto_increment, floor_id int, FOREIGN KEY (floor_id) REFERENCES floor(id), zone_id int, FOREIGN KEY (zone_id) REFERENCES zone(id), booked boolean);
+
+INSERT INTO seat( floor_id, zone_id, booked) values(1,1,false);
+INSERT INTO seat( floor_id, zone_id, booked) values(1,1,false);
+INSERT INTO seat( floor_id, zone_id,  booked) values(1,2,false);
+INSERT INTO seat( floor_id, zone_id, booked) values(1,3,true);
+INSERT INTO seat( floor_id, zone_id, booked) values(2,5,false);
+INSERT INTO seat( floor_id, zone_id, booked) values(1,6,false);
