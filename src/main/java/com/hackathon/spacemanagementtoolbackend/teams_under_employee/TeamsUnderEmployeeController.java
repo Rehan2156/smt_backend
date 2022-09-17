@@ -19,8 +19,8 @@ public class TeamsUnderEmployeeController {
     @Autowired
     TeamService teamService;
 
-    @GetMapping("/getAllTeamsUnder/{id}")
-    public List<Team> getAllTeamsUnderEmpID(@PathVariable("id") int id)
+    @GetMapping("/getTeams")
+    public List<Team> getAllTeamsUnderEmpID(@RequestParam("userId") int id)
     {
         List<TeamsUnderEmployee> teamsUnderEmployeeList = teamsUnderEmployeeService.getAllTeamUnderEmpID(id);
         List<Team> teamList = new ArrayList<>();
