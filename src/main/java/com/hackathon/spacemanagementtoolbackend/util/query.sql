@@ -65,24 +65,25 @@ INSERT INTO FLOOR(floor_number) value(2);
 INSERT INTO FLOOR(floor_number) value(3);
 INSERT INTO FLOOR(floor_number) value(4);
 
-CREATE TABLE zone(id int primary key primary key auto_increment, floor_id int, FOREIGN KEY (floor_id) REFERENCES floor(id), zone_name varchar(20));
+CREATE TABLE zone(id int primary key primary key auto_increment, floor_id int, FOREIGN KEY (floor_id) REFERENCES floor(id), team_id int, FOREIGN KEY (team_id) REFERENCES team(id), zone_name varchar(20));
 
-INSERT INTO ZONE(floor_id, zone_name) values(1, "A");
-INSERT INTO ZONE(floor_id, zone_name) values(1, "B");
-INSERT INTO ZONE(floor_id, zone_name) values(1, "C");
-INSERT INTO ZONE(floor_id, zone_name) values(1, "D");
-INSERT INTO ZONE(floor_id, zone_name) values(2, "A");
-INSERT INTO ZONE(floor_id, zone_name) values(2, "B");
-INSERT INTO ZONE(floor_id, zone_name) values(2, "C");
-INSERT INTO ZONE(floor_id, zone_name) values(2, "D");
-INSERT INTO ZONE(floor_id, zone_name) values(3, "A");
-INSERT INTO ZONE(floor_id, zone_name) values(3, "B");
-INSERT INTO ZONE(floor_id, zone_name) values(3, "C");
-INSERT INTO ZONE(floor_id, zone_name) values(3, "D");
-INSERT INTO ZONE(floor_id, zone_name) values(4, "A");
-INSERT INTO ZONE(floor_id, zone_name) values(4, "B");
-INSERT INTO ZONE(floor_id, zone_name) values(4, "C");
-INSERT INTO ZONE(floor_id, zone_name) values(4, "D");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(1, 1, "A");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(1, 1, "B");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(1, 1, "C");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(1, 2, "D");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 2, "A");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 5, "B");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 5, "C");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 6,"D");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(3 ,4 ,"A");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(3 ,4 ,"B");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(3, 7 ,"C");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(3, 10 ,"D");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(4, 12 ,"A");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(4, 9 ,"B");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(4, 8, "C");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(4, 8, "D");
+
 
 CREATE TABLE teamfloorzone(id int primary key auto_increment, team_id int, floor_id int, zone_id int, seat_from int, seat_to int);
 
