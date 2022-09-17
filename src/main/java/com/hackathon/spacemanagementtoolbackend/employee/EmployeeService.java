@@ -15,12 +15,6 @@ public class EmployeeService {
         return (ArrayList<Employee>) employeeRepository.findAll();
     }
 
-    public void addDummyUsers(){
-        Employee user = new Employee("abc","abc",123,10);
-
-        employeeRepository.save(user);
-    }
-
     public boolean usernameNotFound(String username,String password) {
         return !employeeRepository.existsByUserNameAndPassWord(username,password);
     }

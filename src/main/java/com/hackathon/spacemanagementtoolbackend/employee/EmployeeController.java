@@ -15,11 +15,6 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
-    @PostMapping("/addDummyUsers")
-    public void add(){
-        employeeService.addDummyUsers();
-    }
-
     @GetMapping("/findall")
     public ArrayList<Employee> getAllEmployee() {
         return employeeService.findAllUsers();

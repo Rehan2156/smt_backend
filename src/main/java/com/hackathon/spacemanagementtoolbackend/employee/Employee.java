@@ -19,12 +19,5 @@ public class Employee {
 
     private int totalSeats;
 
-    public Employee(String userName, String passWord, int teamId, int totalSeats) {
-        this.userName = userName;
-        this.passWord = passWord;
-        this.teamId = teamId;
-        this.totalSeats = totalSeats;
-    }
-
 }
 
