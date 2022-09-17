@@ -1,0 +1,16 @@
+INSERT INTO ZONE(floor_id, zone_name) values(1, "A");
+INSERT INTO ZONE(floor_id, zone_name) values(1, "B");
+INSERT INTO ZONE(floor_id, zone_name) values(1, "C");
+INSERT INTO ZONE(floor_id, zone_name) values(1, "D");
+INSERT INTO ZONE(floor_id, zone_name) values(2, "A");
+INSERT INTO ZONE(floor_id, zone_name) values(2, "B");
+INSERT INTO ZONE(floor_id, zone_name) values(2, "C");
+INSERT INTO ZONE(floor_id, zone_name) values(2, "D");
+INSERT INTO ZONE(floor_id, zone_name) values(3, "A");
+INSERT INTO ZONE(floor_id, zone_name) values(3, "B");
+INSERT INTO ZONE(floor_id, zone_name) values(3, "C");
+INSERT INTO ZONE(floor_id, zone_name) values(3, "D");
+INSERT INTO ZONE(floor_id, zone_name) values(4, "A");
+INSERT INTO ZONE(floor_id, zone_name) values(4, "B");
+INSERT INTO ZONE(floor_id, zone_name) values(4, "C");
+INSERT INTO ZONE(floor_id, zone_name) values(4, "D");
