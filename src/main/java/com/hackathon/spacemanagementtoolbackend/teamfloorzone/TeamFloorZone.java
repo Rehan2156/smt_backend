@@ -5,20 +5,19 @@ import lombok.Data;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
+@Table(name="teamfloorzone")
 public class TeamFloorZone {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    private String teamId;
-    private String floorId;
-
-
+    private int teamId;
+    private int floorId;
+    private int zoneId;
+    private int seatFrom;
+    private int seatTo;
 }
 

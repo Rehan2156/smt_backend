@@ -8,6 +8,6 @@ import java.util.ArrayList;
 @Repository
 interface EmployeeRepository extends JpaRepository<Employee, Long> {
     ArrayList<Employee> findAll();
-    Employee findEmployeeByUsername(String username);
-    boolean existsByUsernameAndPassword(String username,String password);
+    Employee findEmployeeByUserName(String username);
+    boolean existsByUserNameAndPassWord(String username,String password);
 }

@@ -22,10 +22,10 @@ public class EmployeeService {
     }
 
     public boolean usernameNotFound(String username,String password) {
-        return !employeeRepository.existsByUsernameAndPassword(username,password);
+        return !employeeRepository.existsByUserNameAndPassWord(username,password);
     }
 
     public Employee getEmployeeByUsername(String username){
-        return employeeRepository.findEmployeeByUsername(username);
+        return employeeRepository.findEmployeeByUserName(username);
     }
 }
