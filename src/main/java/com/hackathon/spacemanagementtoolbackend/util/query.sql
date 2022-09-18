@@ -9,7 +9,9 @@ create table teamsunderemployee(id int primary key auto_increment, team_id int, 
 CREATE TABLE floor(id int primary key auto_increment, floor_number int);
 CREATE TABLE zone(id int primary key primary key auto_increment, floor_id int, FOREIGN KEY (floor_id) REFERENCES floor(id), team_id int, FOREIGN KEY (team_id) REFERENCES team(id), zone_name varchar(20));
 CREATE TABLE teamfloorzone(id int primary key auto_increment, team_id int, floor_id int, zone_id int, seat_from int, seat_to int);
-CREATE TABLE seat(id int primary key auto_increment, team_id int, FOREIGN KEY(team_id) references team(id),floor_id int, FOREIGN KEY (floor_id) REFERENCES floor(id), zone_id int, FOREIGN KEY (zone_id) REFERENCES zone(id), seat_number int,booked boolean);
+CREATE TABLE seat(id int primary key auto_increment, team_id int, FOREIGN KEY(team_id) references team(id),floor_id int, FOREIGN KEY (floor_id)
+    REFERENCES floor(id), zone_id int, FOREIGN KEY (zone_id)
+                      REFERENCES zone(id), seat_number int,booked boolean, start_date date, end_date date);
 
 INSERT INTO team(team_name, oe_code, team_description) values("Front office", "FO", "All teams come under this team");-- Dhiru
 INSERT INTO team(team_name, oe_code, team_description) values("Wealth management", "WM1", "Handles all projects for wealth management");-- Mukesh
@@ -80,30 +82,30 @@ INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values
 INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 2, 2, 1, 10);
 
 
-INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,1,1,false);
-INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,1,2,false);
--- INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked) values(1,1,1,3,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,1,4,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,1,5,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,1,6,false);
-INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,2,1,false);
-INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,2,2,false);
--- INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked) values(1,1,2,3,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,2,4,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,2,5,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,2,6,false);
-INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,1,1,false);
-INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,1,2,false);
--- INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked) values(1,2,1,3,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,1,4,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,1,5,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,1,6,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,2,1,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,2,2,false);
--- INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked) values(1,2,2,3,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,2,4,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,2,5,false);
--- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,2,6,false);
+INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,1,1,1,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,1,1,2,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked, start_date, end_date) values(1,1,1,3,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,1,1,4,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,1,1,5,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,1,1,6,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,1,2,1,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,1,2,2,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked, start_date, end_date) values(1,1,2,3,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,1,2,4,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,1,2,5,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,1,2,6,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,2,1,1,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,2,1,2,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked, start_date, end_date) values(1,2,1,3,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,2,1,4,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,2,1,5,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,2,1,6,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,2,2,1,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,2,2,2,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked, start_date, end_date) values(1,2,2,3,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,2,2,4,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,2,2,5,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
+-- INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked, start_date, end_date) values(1,2,2,6,false, STR_TO_DATE('19/09/2022', '%d/%m/%Y'),  STR_TO_DATE('25/09/2022', '%d/%m/%Y'));
 
 
 INSERT INTO team_manager(team_id, team_lead_id) values(1,1);

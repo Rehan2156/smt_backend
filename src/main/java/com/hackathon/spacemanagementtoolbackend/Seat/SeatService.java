@@ -37,9 +37,28 @@ public class SeatService {
 
     }
 
+    public List<Seat> findSeatsByTeamIdFloorIdZoneIdAndSeatNumber(int teamId, int floorId, int zoneId, int seatNumber){
+
+        return seatRepository.findAllByTeamIdAndFloorIdAndZoneIdAndSeatNumber(teamId, floorId, zoneId, seatNumber);
+
+    }
+
     public List<Seat> updateSeatsBySeatId(List<Seat>  seats){
 
         return seatRepository.saveAll(seats);
 
     }
+
+    public List<Seat> updateSeatsByTeamIdFloorIdZoneIdAndSeatNumber(List<Seat>  seats){
+
+        return seatRepository.saveAll(seats);
+
+    }
+
+    public void deleteSeat(Seat seat){
+
+        seatRepository.delete(seat);
+
+    }
+
 }

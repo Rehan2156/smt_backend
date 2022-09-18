@@ -11,11 +11,15 @@ import java.util.List;
 public interface SeatRepository extends JpaRepository<Seat, Integer> {
 
     List<Seat> findAllByTeamIdAndFloorIdAndZoneId(int teamId, int floorId, int zoneId);
+
+    List<Seat> findAllByTeamIdAndFloorIdAndZoneIdAndSeatNumber(int teamId, int floorId, int zoneId, int seatNumber);
+
     List<Seat> findAllByTeamIdAndFloorId(int teamId, int floorId);
 
     Seat findSeatById(int seatId);
 
     List<Seat> findSeatByTeamId(Integer teamId);
+
 
 
 

@@ -1,5 +1,7 @@
-package com.hackathon.spacemanagementtoolbackend.employee;
+package com.hackathon.spacemanagementtoolbackend.controller;
 
+import com.hackathon.spacemanagementtoolbackend.employee.Employee;
+import com.hackathon.spacemanagementtoolbackend.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

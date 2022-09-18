@@ -68,7 +68,7 @@ public class SeatController {
 
                 Seat seatFromDb = seatService.findSeat(seatId);
 
-                Seat seat = new Seat(seatBookingDTO.getTeamId(), seatBookingDTO.getFloorId(), seatBookingDTO.getZoneId(), seatFromDb.getSeatNumber(), false);
+                Seat seat = new Seat(seatBookingDTO.getTeamId(), seatBookingDTO.getFloorId(), seatBookingDTO.getZoneId(), seatFromDb.getSeatNumber(), false, seatFromDb.getStartDate(), seatFromDb.getEndDate());
 
                 seatService.save(seat);
             }
@@ -127,12 +127,18 @@ public class SeatController {
                 Seat currSeat = seatService.findSeat(seatId);
                 currSeat.setBooked(false);
                 updatedSeatList.add(currSeat);
+                List<Seat> seats = seatService.findSeatsByTeamIdFloorIdZoneIdAndSeatNumber(seatBookingDTO.getTeamId()
+                        , seatBookingDTO.getFloorId(), seatBookingDTO.getTeamId(), currSeat.getSeatNumber());
+
+                for (Seat seat : seats) {
+                    seatService.save(seat);
+                }
             }
 
             seatService.saveAll(updatedSeatList);
             employeeService.updateSeatCount(seatBookingDTO.getEmployeeId(), seatList.size(), false);
             TeamManager team1 = teamManagerService.getTeamData(seatBookingDTO.getTeamId());
-            employeeService.updateSeatCount(team1.getTeamLeadId(), seatList.size(), false);
+            employeeService.updateSeatCount(team1.getTeamLeadId(), seatList.size(), true);
             return ResponseEntity.ok("Seats unallocated successfully");
 
         } catch (Exception e) {

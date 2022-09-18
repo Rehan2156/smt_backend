@@ -31,22 +31,27 @@ public class TeamsUnderEmployeeController {
     TeamManagerService teamManagerService;
 
     @GetMapping("/getTeams")
-    public List<TeamDto> getAllTeamsUnderEmpID(@RequestParam("userId") int id)
-    {
-        List<TeamsUnderEmployee> teamsUnderEmployeeList = teamsUnderEmployeeService.getAllTeamUnderEmpID(id);
-        List<TeamDto> teamDtoList = new ArrayList<>();
-        for(TeamsUnderEmployee teamUnderEmployee: teamsUnderEmployeeList)
-        {
+    public List<TeamDto> getAllTeamsUnderEmpID(@RequestParam("userId") int id) {
+        try {
 
-            Team team = teamService.getTeamData(teamUnderEmployee.getTeamId());
-            TeamManager teamManager = teamManagerService.getTeamData(team.getId());
-            Employee manager = employeeService.getEmployeeById(teamManager.getTeamLeadId());
 
-            TeamDto teamDto = new TeamDto(team.getId(), team.getTeamName(), team.getOeCode(), manager.getId(),
-                    manager.getUserName(), team.getTeamDescription());
-            teamDtoList.add(teamDto);
+            List<TeamsUnderEmployee> teamsUnderEmployeeList = teamsUnderEmployeeService.getAllTeamUnderEmpID(id);
+            List<TeamDto> teamDtoList = new ArrayList<>();
+            for (TeamsUnderEmployee teamUnderEmployee : teamsUnderEmployeeList) {
+
+                Team team = teamService.getTeamData(teamUnderEmployee.getTeamId());
+                TeamManager teamManager = teamManagerService.getTeamData(team.getId());
+                Employee manager = employeeService.getEmployeeById(teamManager.getTeamLeadId());
+
+                TeamDto teamDto = new TeamDto(team.getId(), team.getTeamName(), team.getOeCode(), manager.getId(),
+                        manager.getUserName(), team.getTeamDescription());
+                teamDtoList.add(teamDto);
+            }
+            return teamDtoList;
+        } catch (Exception e) {
+
+            return new ArrayList<>();
         }
-        return teamDtoList;
-    }
 
+    }
 }
