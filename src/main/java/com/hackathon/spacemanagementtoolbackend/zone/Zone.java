@@ -1,6 +1,7 @@
 package com.hackathon.spacemanagementtoolbackend.zone;
 
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,8 @@ import javax.persistence.Id;
 @Entity
 public class Zone {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Nullable
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private int floorId;
@@ -21,6 +23,7 @@ public class Zone {
     private String zoneName;
 
     public Zone(int floorId, int teamId, String zoneName) {
+        this.id = null;
         this.floorId = floorId;
         this.teamId = teamId;
         this.zoneName = zoneName;

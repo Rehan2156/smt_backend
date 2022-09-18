@@ -12,7 +12,8 @@ import javax.persistence.*;
 public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Nullable
+    private Integer id;
 
     private int teamId;
 
@@ -25,6 +26,7 @@ public class Seat {
     private boolean booked;
 
     public Seat(int teamId, int floorId, int zoneId, int seatNumber, boolean booked) {
+        this.id = null;
         this.teamId = teamId;
         this.floorId = floorId;
         this.zoneId = zoneId;
