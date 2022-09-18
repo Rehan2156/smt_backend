@@ -2,6 +2,7 @@ package com.hackathon.spacemanagementtoolbackend.Seat;
 
 import com.hackathon.spacemanagementtoolbackend.dto.SeatBookingDTO;
 import com.hackathon.spacemanagementtoolbackend.employee.EmployeeService;
+import com.hackathon.spacemanagementtoolbackend.team.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ public class SeatController {
 
     @Autowired
     EmployeeService employeeService;
+
+    @Autowired
+    TeamService teamService;
 
     @GetMapping("/seats")
     public List<Seat> getSeats(@RequestParam("teamId") int teamId, @RequestParam("floorId") int floorId, @RequestParam("zoneId") int zoneId){
@@ -38,6 +42,7 @@ public class SeatController {
 
             seatService.saveAll(updatedSeatList);
             employeeService.reduceSeatCount(seatBookingDTO.getEmployeeId(),seatList.size());
+            teamService.getTeamData(seatBookingDTO.getTeamId());
             return ResponseEntity.ok("Seats booked successfully");
         }
         catch (Exception e)
@@ -46,4 +51,7 @@ public class SeatController {
         }
 
     }
+
+
+
 }
