@@ -18,7 +18,7 @@ public class SeatController {
     SeatService seatService;
 
     @GetMapping("/seats")
-    public List<Seat> getSeats(int teamId, int floorId, int zoneId){
+    public List<Seat> getSeats(@RequestParam("teamId") int teamId, @RequestParam("floorId") int floorId, @RequestParam("zoneId") int zoneId){
         return seatService.getAllSeats(teamId, floorId, zoneId);
     }
 

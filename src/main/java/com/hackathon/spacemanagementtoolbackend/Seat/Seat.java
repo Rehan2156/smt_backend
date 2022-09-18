@@ -19,5 +19,7 @@ public class Seat {
 
     private int zoneId;
 
+    private int seatNumber;
+
     private boolean booked;
 }
