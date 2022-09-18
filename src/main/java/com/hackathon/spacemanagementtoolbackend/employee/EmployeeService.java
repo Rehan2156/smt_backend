@@ -27,15 +27,14 @@ public class EmployeeService {
         return employeeRepository.findEmployeeById(id);
     }
 
-    public Employee reduceSeatCount(int employeeId, int seatCount) {
+    public Employee updateSeatCount(int employeeId, int seatCount, boolean shouldAdd) {
         Employee employee = employeeRepository.findEmployeeById(employeeId);
-        employee.setTotalSeats(employee.getTotalSeats() - seatCount);
-        return employeeRepository.save(employee);
-    }
-
-    public Employee assignSeatCount(int employeeId, int seatCount) {
-        Employee employee = employeeRepository.findEmployeeById(employeeId);
-        employee.setTotalSeats(employee.getTotalSeats() + seatCount);
+        if(shouldAdd){
+            employee.setTotalSeats(employee.getTotalSeats() + seatCount);
+        }
+        else{
+            employee.setTotalSeats(employee.getTotalSeats() - seatCount);
+        }
         return employeeRepository.save(employee);
     }
 

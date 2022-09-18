@@ -45,13 +45,12 @@ public class SeatController {
     FloorService floorService;
 
     @GetMapping("/seats")
-    public List<Seat> getSeats(@RequestParam("teamId") int teamId, @RequestParam("floorId") int floorId, @RequestParam("zoneId") int zoneId){
+    public List<Seat> getSeats(@RequestParam("teamId") int teamId, @RequestParam("floorId") int floorId, @RequestParam("zoneId") int zoneId) {
         return seatService.getAllSeats(teamId, floorId, zoneId);
     }
 
     @PutMapping("/bookSeats")
-    public ResponseEntity<Object> bookSeats(@RequestBody SeatBookingDTO seatBookingDTO)
-    {
+    public ResponseEntity<Object> bookSeats(@RequestBody SeatBookingDTO seatBookingDTO) {
         try {
             List<Integer> seatList = seatBookingDTO.getSeatIds();
             List<Seat> updatedSeatList = new ArrayList<>();
@@ -62,26 +61,24 @@ public class SeatController {
             }
 
             seatService.saveAll(updatedSeatList);
-            employeeService.reduceSeatCount(seatBookingDTO.getEmployeeId(),seatList.size());
+            employeeService.updateSeatCount(seatBookingDTO.getEmployeeId(), seatList.size(), false);
             TeamManager team1 = teamManagerService.getTeamData(seatBookingDTO.getTeamId());
-            employeeService.assignSeatCount(team1.getTeamLeadId(), seatList.size());
+            employeeService.updateSeatCount(team1.getTeamLeadId(), seatList.size(), true);
             for (Integer seatId : seatList) {
 
                 Seat seatFromDb = seatService.findSeat(seatId);
 
-                Seat seat = new Seat(seatBookingDTO.getTeamId(), seatBookingDTO.getFloorId(), seatBookingDTO.getZoneId(),seatFromDb.getSeatNumber(),false );
+                Seat seat = new Seat(seatBookingDTO.getTeamId(), seatBookingDTO.getFloorId(), seatBookingDTO.getZoneId(), seatFromDb.getSeatNumber(), false);
 
                 seatService.save(seat);
             }
-            TeamFloorZone teamFloorZone = new TeamFloorZone(seatBookingDTO.getTeamId(),seatBookingDTO.getFloorId(),seatBookingDTO.getZoneId());
-            Zone zoneFromDb= zoneService.getZoneById(seatBookingDTO.getZoneId());
-            Zone zone = new Zone(seatBookingDTO.getFloorId(),seatBookingDTO.getTeamId(),zoneFromDb.getZoneName());
+            TeamFloorZone teamFloorZone = new TeamFloorZone(seatBookingDTO.getTeamId(), seatBookingDTO.getFloorId(), seatBookingDTO.getZoneId());
+            Zone zoneFromDb = zoneService.getZoneById(seatBookingDTO.getZoneId());
+            Zone zone = new Zone(seatBookingDTO.getFloorId(), seatBookingDTO.getTeamId(), zoneFromDb.getZoneName());
             teamFloorZoneService.save(teamFloorZone);
             zoneService.saveZone(zone);
             return ResponseEntity.ok("Seats booked successfully");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body("Seats not booked");
         }
 
@@ -92,12 +89,12 @@ public class SeatController {
 
         List<Seat> seats = seatService.findSeatsByTeamId(teamId);
         List<Floor> floors = new ArrayList<>();
-        for(Seat seat: seats){
+        for (Seat seat : seats) {
 
             Floor floor = floorService.getFloorData(seat.getFloorId());
             floors.add(floor);
         }
-        return  floors.stream()
+        return floors.stream()
                 .distinct()
                 .collect(Collectors.toList());
 
@@ -110,7 +107,7 @@ public class SeatController {
 
         List<Zone> zones = new ArrayList<>();
 
-        for(Seat seat: seats){
+        for (Seat seat : seats) {
             Zone zone = zoneService.getZoneById(seat.getZoneId());
             zones.add(zone);
 
@@ -121,5 +118,28 @@ public class SeatController {
 
     }
 
+    @PutMapping("/unallocateSeats")
+    public ResponseEntity<Object> Seats(@RequestBody SeatBookingDTO seatBookingDTO) {
+        try {
+            List<Integer> seatList = seatBookingDTO.getSeatIds();
+            List<Seat> updatedSeatList = new ArrayList<>();
+            for (Integer seatId : seatList) {
+                Seat currSeat = seatService.findSeat(seatId);
+                currSeat.setBooked(false);
+                updatedSeatList.add(currSeat);
+            }
+
+            seatService.saveAll(updatedSeatList);
+            employeeService.updateSeatCount(seatBookingDTO.getEmployeeId(), seatList.size(), false);
+            TeamManager team1 = teamManagerService.getTeamData(seatBookingDTO.getTeamId());
+            employeeService.updateSeatCount(team1.getTeamLeadId(), seatList.size(), false);
+            return ResponseEntity.ok("Seats unallocated successfully");
+
+        } catch (Exception e) {
+
+            return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body("Seats unallocation failed");
+
+        }
 
     }
+}

@@ -36,4 +36,10 @@ public class SeatService {
         return seatRepository.findAllByTeamIdAndFloorId(teamId, floorId);
 
     }
+
+    public List<Seat> updateSeatsBySeatId(List<Seat>  seats){
+
+        return seatRepository.saveAll(seats);
+
+    }
 }
