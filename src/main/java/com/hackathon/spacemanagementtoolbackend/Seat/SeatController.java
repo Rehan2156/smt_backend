@@ -5,6 +5,8 @@ import com.hackathon.spacemanagementtoolbackend.employee.EmployeeService;
 import com.hackathon.spacemanagementtoolbackend.team.TeamService;
 import com.hackathon.spacemanagementtoolbackend.teamManager.TeamManager;
 import com.hackathon.spacemanagementtoolbackend.teamManager.TeamManagerService;
+import com.hackathon.spacemanagementtoolbackend.teamfloorzone.TeamFloorZone;
+import com.hackathon.spacemanagementtoolbackend.teamfloorzone.TeamFloorZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,9 @@ public class SeatController {
     @Autowired
     TeamManagerService teamManagerService;
 
+    @Autowired
+    TeamFloorZoneService teamFloorZoneService;
+
     @GetMapping("/seats")
     public List<Seat> getSeats(@RequestParam("teamId") int teamId, @RequestParam("floorId") int floorId, @RequestParam("zoneId") int zoneId){
         return seatService.getAllSeats(teamId, floorId, zoneId);
@@ -49,7 +54,6 @@ public class SeatController {
             employeeService.reduceSeatCount(seatBookingDTO.getEmployeeId(),seatList.size());
             TeamManager team1 = teamManagerService.getTeamData(seatBookingDTO.getTeamId());
             employeeService.assignSeatCount(team1.getTeamLeadId(), seatList.size());
-
             for (Integer seatId : seatList) {
 
                 Seat seatFromDb = seatService.findSeat(seatId);
@@ -58,6 +62,8 @@ public class SeatController {
 
                 seatService.save(seat);
             }
+            TeamFloorZone teamFloorZone = new TeamFloorZone(seatBookingDTO.getTeamId(),seatBookingDTO.getFloorId(),seatBookingDTO.getZoneId());
+            teamFloorZoneService.save(teamFloorZone);
             return ResponseEntity.ok("Seats booked successfully");
         }
         catch (Exception e)

@@ -13,4 +13,8 @@ public class TeamFloorZoneService {
     public List<TeamFloorZone> getAllByTeamId(int teamId){
         return teamFloorZoneRepository.findAllByTeamId(teamId);
     }
+
+    public TeamFloorZone save(TeamFloorZone teamFloorZone){
+        return teamFloorZoneRepository.save(teamFloorZone);
+    }
 }

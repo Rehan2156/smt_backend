@@ -15,9 +15,18 @@ public class TeamFloorZone {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private int teamId;
+
+    public TeamFloorZone(int teamId, int floorId, int zoneId) {
+        this.teamId = teamId;
+        this.floorId = floorId;
+        this.zoneId = zoneId;
+    }
+
     private int floorId;
     private int zoneId;
-    private int seatFrom;
-    private int seatTo;
+
+    public TeamFloorZone() {
+
+    }
 }
 
