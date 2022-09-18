@@ -49,6 +49,15 @@ public class SeatController {
             employeeService.reduceSeatCount(seatBookingDTO.getEmployeeId(),seatList.size());
             TeamManager team1 = teamManagerService.getTeamData(seatBookingDTO.getTeamId());
             employeeService.assignSeatCount(team1.getTeamLeadId(), seatList.size());
+
+            for (Integer seatId : seatList) {
+
+                Seat seatFromDb = seatService.findSeat(seatId);
+
+                Seat seat = new Seat(seatBookingDTO.getTeamId(), seatBookingDTO.getFloorId(), seatBookingDTO.getZoneId(),seatFromDb.getSeatNumber(),false );
+
+                seatService.save(seat);
+            }
             return ResponseEntity.ok("Seats booked successfully");
         }
         catch (Exception e)

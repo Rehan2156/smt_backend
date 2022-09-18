@@ -23,4 +23,8 @@ public class SeatService {
     {
         return seatRepository.saveAll(seatsList);
     }
+
+    public Seat save(Seat seat){
+        return seatRepository.save(seat);
+    }
 }
