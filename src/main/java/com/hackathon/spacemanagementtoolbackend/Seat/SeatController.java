@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class SeatController {
@@ -96,7 +97,10 @@ public class SeatController {
             Floor floor = floorService.getFloorData(seat.getFloorId());
             floors.add(floor);
         }
-        return  floors;
+        return  floors.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
     }
 
     @GetMapping("/getZones")
@@ -111,7 +115,10 @@ public class SeatController {
             zones.add(zone);
 
         }
-        return zones;
+        return zones.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
     }
 
 
