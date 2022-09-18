@@ -1,101 +1,116 @@
-CREATE DATABASE smtDB;
+drop schema smtdb;
+CREATE DATABASE smtdb;
 USE smtDB;
 
-CREATE TABLE team(id int primary key auto_increment, team varchar(20), oe_code varchar(20));
+CREATE TABLE team(id int primary key auto_increment, team_name varchar(20), oe_code varchar(20), team_description varchar(200));
 
-INSERT INTO Team(team, oe_code) values("team1", "OE1");
-INSERT INTO Team(team, oe_code) values("team2", "OE2");
-INSERT INTO Team(team, oe_code) values("team11", "OE11");
-INSERT INTO Team(team, oe_code) values("team12", "OE12");
-INSERT INTO Team(team, oe_code) values("team111", "OE111");
-INSERT INTO Team(team, oe_code) values("team112", "OE112");
-INSERT INTO Team(team, oe_code) values("team121", "OE121");
-INSERT INTO Team(team, oe_code) values("team21", "OE21");
-INSERT INTO Team(team, oe_code) values("team211", "OE211");
-INSERT INTO Team(team, oe_code) values("team212", "OE212");
-INSERT INTO Team(team, oe_code) values("team22", "OE22");
-INSERT INTO Team(team, oe_code) values("team221", "OE221");
-
+INSERT INTO team(team_name, oe_code, team_description) values("Front office", "FO", "All teams come under this team");-- Dhiru
+INSERT INTO team(team_name, oe_code, team_description) values("Wealth management", "WM1", "Handles all projects for wealth management");-- Mukesh
+INSERT INTO team(team_name, oe_code, team_description) values("Investment Bank", "IB1", "Handles all projects for Investment bank");-- Anil
+INSERT INTO team(team_name, oe_code, team_description) values("Client Reporting", "WM11", "We report to client");-- Akash
+INSERT INTO team(team_name, oe_code, team_description) values("RME", "WM12", "We are SCOT");-- Anand
+INSERT INTO team(team_name, oe_code, team_description) values("DPB", "WM13",  "We are DPB");-- Esha
+INSERT INTO team(team_name, oe_code, team_description) values("Sentinal", "IB11","We are Sentinal");-- Anmol
+INSERT INTO team(team_name, oe_code, team_description) values("SCOT", "IB12", "We are Sentinal");-- Anshu
 
 CREATE TABLE employee(id int primary key auto_increment, user_name varchar(20), pass_word varchar(20), team_id int, FOREIGN KEY (team_id) REFERENCES team(id), total_seats int);
 
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("1", "1", "1", 100);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("2", "2", "2", 50);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("3", "3", "3", 40);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("4", "4", "4", 10);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("5", "5", "5", 10);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("6", "6", "5", 1);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("7", "7", "5", 1);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("8", "8", "6", 1);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("9", "9", "6", 1);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("10", "10", "6", 1);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("11", "11", "6", 1);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("12", "12", "8", 90);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("13", "13", "9", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("14", "14", "9", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("15", "15", "9", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("16", "16", "7", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("17", "17", "7", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("18", "18", "10", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("19", "19", "10", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("20", "20", "10", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("21", "21", "10", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("23", "23", "11", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("24", "24", "12", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("26", "26", "12", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("27", "27", "12", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("28", "28", "12", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("29", "29", "12", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("30", "30", "12", 9);
-INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("31", "31", "12", 9);
+INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("dhirubhai.ambani", "12345", "1", 6);
+INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("mukesh", "12345", "2", 0);
+INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("anil", "12345", "3", 0);
+INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("akash", "12345", "4", 0);
+INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("anant", "12345", "5", 0);
+INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("esha", "12345", "6", 0);
+INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("anmol", "12345", "7", 0);
+INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("anshul", "12345", "8", 0);
+INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("prithvi", "12345", "4", 0);
+INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("neel", "12345", "5", 0);
+INSERT INTO employee(user_name, pass_word, team_id, total_seats) values("nitin", "12345", "5", 0);
+
 
 create table teamsunderemployee(id int primary key auto_increment, team_id int, foreign key (team_id) references team(id), employee_id int, foreign key (employee_id) references employee(id) );
 
-INSERT INTO teamsunderemployee(team_id, employee_id) values(1,1);
-INSERT INTO teamsunderemployee(team_id, employee_id) values(2,1);
-INSERT INTO teamsunderemployee(team_id, employee_id) values(3,1);
+INSERT INTO teamsunderemployee(team_id, employee_id) values(2, 1);
+INSERT INTO teamsunderemployee(team_id, employee_id) values(3, 1);
 INSERT INTO teamsunderemployee(team_id, employee_id) values(4,2);
 INSERT INTO teamsunderemployee(team_id, employee_id) values(5,2);
-
+INSERT INTO teamsunderemployee(team_id, employee_id) values(6,2);
+INSERT INTO teamsunderemployee(team_id, employee_id) values(7,3);
+INSERT INTO teamsunderemployee(team_id, employee_id) values(8,3);
+INSERT INTO teamsunderemployee(team_id, employee_id) values(null,4);
+INSERT INTO teamsunderemployee(team_id, employee_id) values(null,5);
+INSERT INTO teamsunderemployee(team_id, employee_id) values(null,6);
+INSERT INTO teamsunderemployee(team_id, employee_id) values(null,7);
+INSERT INTO teamsunderemployee(team_id, employee_id) values(null,8);
 
 CREATE TABLE floor(id int primary key auto_increment, floor_number int);
 
 INSERT INTO FLOOR(floor_number) value(1);
 INSERT INTO FLOOR(floor_number) value(2);
-INSERT INTO FLOOR(floor_number) value(3);
-INSERT INTO FLOOR(floor_number) value(4);
+-- INSERT INTO FLOOR(floor_number) value(3);
+-- INSERT INTO FLOOR(floor_number) value(4);
 
 CREATE TABLE zone(id int primary key primary key auto_increment, floor_id int, FOREIGN KEY (floor_id) REFERENCES floor(id), team_id int, FOREIGN KEY (team_id) REFERENCES team(id), zone_name varchar(20));
 
 INSERT INTO ZONE(floor_id, team_id, zone_name) values(1, 1, "A");
 INSERT INTO ZONE(floor_id, team_id, zone_name) values(1, 1, "B");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(1, 1, "C");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(1, 2, "D");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 2, "A");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 5, "B");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 5, "C");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 6,"D");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(3 ,4 ,"A");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(3 ,4 ,"B");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(3, 7 ,"C");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(3, 10 ,"D");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(4, 12 ,"A");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(4, 9 ,"B");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(4, 8, "C");
-INSERT INTO ZONE(floor_id, team_id, zone_name) values(4, 8, "D");
+-- INSERT INTO ZONE(floor_id, team_id, zone_name) values(1, 1, "C");
+-- INSERT INTO ZONE(floor_id, team_id, zone_name) values(1, 1, "D");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 1, "A");
+INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 1, "B");
+-- INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 1, "C");
+-- INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 1,"D");
+-- INSERT INTO ZONE(floor_id, team_id, zone_name) values(3 ,1 ,"A");
+-- INSERT INTO ZONE(floor_id, team_id, zone_name) values(3 ,1 ,"B");
+-- INSERT INTO ZONE(floor_id, team_id, zone_name) values(3, 1 ,"C");
+-- INSERT INTO ZONE(floor_id, team_id, zone_name) values(3, 1 ,"D");
+-- INSERT INTO ZONE(floor_id, team_id, zone_name) values(4, 1 ,"A");
+-- INSERT INTO ZONE(floor_id, team_id, zone_name) values(4, 1 ,"B");
+-- INSERT INTO ZONE(floor_id, team_id, zone_name) values(4, 1, "C");
+-- INSERT INTO ZONE(floor_id, team_id, zone_name) values(4, 1, "D");
 
 
 CREATE TABLE teamfloorzone(id int primary key auto_increment, team_id int, floor_id int, zone_id int, seat_from int, seat_to int);
 
-INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 1, 1, 1, 100);
-INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 1, 2, 1, 100);
-INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 2, 3, 1, 100);
+INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 1, 1, 1, 6);
+INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 1, 2, 1, 6);
+INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 2, 1, 1, 6);
+INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 2, 2, 1, 10);
 
-CREATE TABLE seat(id int primary key auto_increment, floor_id int, FOREIGN KEY (floor_id) REFERENCES floor(id), zone_id int, FOREIGN KEY (zone_id) REFERENCES zone(id), booked boolean);
+CREATE TABLE seat(id int primary key auto_increment, floor_id int, FOREIGN KEY (floor_id) REFERENCES floor(id), zone_id int, FOREIGN KEY (zone_id) REFERENCES zone(id), seat_number int,booked boolean);
 
-INSERT INTO seat( floor_id, zone_id, booked) values(1,1,false);
-INSERT INTO seat( floor_id, zone_id, booked) values(1,1,false);
-INSERT INTO seat( floor_id, zone_id,  booked) values(1,2,false);
-INSERT INTO seat( floor_id, zone_id, booked) values(1,3,true);
-INSERT INTO seat( floor_id, zone_id, booked) values(2,5,false);
-INSERT INTO seat( floor_id, zone_id, booked) values(1,6,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(1,1,1,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(1,1,2,false);
+INSERT INTO seat( floor_id, zone_id,  seat_number, booked) values(1,1,4,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(1,1,4,true);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(1,1,6,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(1,1,6,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(1,2,1,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(1,2,2,false);
+INSERT INTO seat( floor_id, zone_id,  seat_number, booked) values(1,2,3,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(1,2,4,true);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(1,2,5,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(1,2,6,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(2,1,1,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(2,1,2,false);
+INSERT INTO seat( floor_id, zone_id,  seat_number, booked) values(2,1,3,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(2,1,4,true);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(2,1,5,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(2,1,6,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(2,2,1,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(2,2,2,false);
+INSERT INTO seat( floor_id, zone_id,  seat_number, booked) values(2,2,3,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(2,2,4,true);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(2,2,5,false);
+INSERT INTO seat( floor_id, zone_id, seat_number, booked) values(2,2,6,false);
+
+CREATE TABLE team_manager(id int primary key auto_increment, team_id int, foreign key(team_id) references team(id),team_lead_id int, foreign key(team_lead_id) references employee(id));
+
+INSERT INTO team_manager(team_id, team_lead_id) values(1,1);
+INSERT INTO team_manager(team_id, team_lead_id) values(2,2);
+INSERT INTO team_manager(team_id, team_lead_id) values(3,3);
+INSERT INTO team_manager(team_id, team_lead_id) values(4,4);
+INSERT INTO team_manager(team_id, team_lead_id) values(5,5);
+INSERT INTO team_manager(team_id, team_lead_id) values(6,6);
+INSERT INTO team_manager(team_id, team_lead_id) values(7,7);
+INSERT INTO team_manager(team_id, team_lead_id) values(8,8);
