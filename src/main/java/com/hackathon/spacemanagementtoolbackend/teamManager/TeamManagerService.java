@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TeamService {
+public class TeamManagerService {
     @Autowired
-    TeamRepository teamRepository;
+    TeamManagerRepository teamManagerRepository;
 
     public TeamManager getTeamData(int teamId)
     {
-        return teamRepository.findTeamManagerByTeamId(teamId);
+        return teamManagerRepository.findTeamManagerByTeamId(teamId);
     }
 }

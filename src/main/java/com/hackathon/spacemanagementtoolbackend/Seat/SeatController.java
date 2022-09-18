@@ -3,6 +3,8 @@ package com.hackathon.spacemanagementtoolbackend.Seat;
 import com.hackathon.spacemanagementtoolbackend.dto.SeatBookingDTO;
 import com.hackathon.spacemanagementtoolbackend.employee.EmployeeService;
 import com.hackathon.spacemanagementtoolbackend.team.TeamService;
+import com.hackathon.spacemanagementtoolbackend.teamManager.TeamManager;
+import com.hackathon.spacemanagementtoolbackend.teamManager.TeamManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,9 @@ public class SeatController {
     @Autowired
     TeamService teamService;
 
+    @Autowired
+    TeamManagerService teamManagerService;
+
     @GetMapping("/seats")
     public List<Seat> getSeats(@RequestParam("teamId") int teamId, @RequestParam("floorId") int floorId, @RequestParam("zoneId") int zoneId){
         return seatService.getAllSeats(teamId, floorId, zoneId);
@@ -42,7 +47,8 @@ public class SeatController {
 
             seatService.saveAll(updatedSeatList);
             employeeService.reduceSeatCount(seatBookingDTO.getEmployeeId(),seatList.size());
-            teamService.getTeamData(seatBookingDTO.getTeamId());
+            TeamManager team1 = teamManagerService.getTeamData(seatBookingDTO.getTeamId());
+            employeeService.assignSeatCount(team1.getTeamLeadId(), seatList.size());
             return ResponseEntity.ok("Seats booked successfully");
         }
         catch (Exception e)

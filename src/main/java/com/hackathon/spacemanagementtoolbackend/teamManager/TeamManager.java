@@ -14,5 +14,5 @@ public class TeamManager {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private int teamId;
-    private int managerId;
+    private int teamLeadId;
 }
