@@ -15,11 +15,28 @@ public class EmployeeService {
         return (ArrayList<Employee>) employeeRepository.findAll();
     }
 
-    public boolean usernameNotFound(String username,String password) {
-        return !employeeRepository.existsByUserNameAndPassWord(username,password);
+    public boolean usernameNotFound(String username, String password) {
+        return !employeeRepository.existsByUserNameAndPassWord(username, password);
     }
 
-    public Employee getEmployeeByUsername(String username){
+    public Employee getEmployeeByUsername(String username) {
         return employeeRepository.findEmployeeByUserName(username);
     }
+
+    public Employee getEmployeeById(int id) {
+        return employeeRepository.findEmployeeById(id);
+    }
+
+    public Employee reduceSeatCount(int employeeId, int seatCount) {
+        Employee employee = employeeRepository.findEmployeeById(employeeId);
+        employee.setTotalSeats(employee.getTotalSeats() - seatCount);
+        return employeeRepository.save(employee);
+    }
+
+    public Employee assignSeatCount(int employeeId, int seatCount) {
+        Employee employee = employeeRepository.findEmployeeById(employeeId);
+        employee.setTotalSeats(employee.getTotalSeats() + seatCount);
+        return employeeRepository.save(employee);
+    }
+
 }

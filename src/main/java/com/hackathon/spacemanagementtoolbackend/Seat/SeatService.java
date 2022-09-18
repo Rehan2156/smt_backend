@@ -14,4 +14,13 @@ public class SeatService {
     public List<Seat> getAllSeats(int teamId, int floorId, int zoneId){
         return seatRepository.findAllByTeamIdAndFloorIdAndZoneId(teamId, floorId, zoneId);
     }
+
+    public Seat findSeat(int seatId){
+        return seatRepository.findSeatById(seatId);
+    }
+
+    public List<Seat> saveAll(List<Seat> seatsList)
+    {
+        return seatRepository.saveAll(seatsList);
+    }
 }

@@ -17,11 +17,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-
     private int id;
-    private String team;
+    private String teamName;
     private String oeCode;
-
+    private int managerId;
+    private String teamDescription;
 
 }
 

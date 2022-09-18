@@ -29,4 +29,8 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.getEmployeeByUsername(employee.getUserName()));
     }
 
+    @GetMapping("/getEmployee")
+    public Employee getEmployee(@RequestParam("employeeId") int id){
+        return employeeService.getEmployeeById(id);
+    }
 }

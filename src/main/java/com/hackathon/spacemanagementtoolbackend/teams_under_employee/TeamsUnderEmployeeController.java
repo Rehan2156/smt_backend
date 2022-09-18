@@ -1,5 +1,8 @@
 package com.hackathon.spacemanagementtoolbackend.teams_under_employee;
 
+import com.hackathon.spacemanagementtoolbackend.dto.TeamDto;
+import com.hackathon.spacemanagementtoolbackend.employee.Employee;
+import com.hackathon.spacemanagementtoolbackend.employee.EmployeeService;
 import com.hackathon.spacemanagementtoolbackend.team.Team;
 import com.hackathon.spacemanagementtoolbackend.team.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +22,24 @@ public class TeamsUnderEmployeeController {
     @Autowired
     TeamService teamService;
 
+    @Autowired
+    EmployeeService employeeService;
+
     @GetMapping("/getTeams")
-    public List<Team> getAllTeamsUnderEmpID(@RequestParam("userId") int id)
+    public List<TeamDto> getAllTeamsUnderEmpID(@RequestParam("userId") int id)
     {
         List<TeamsUnderEmployee> teamsUnderEmployeeList = teamsUnderEmployeeService.getAllTeamUnderEmpID(id);
-        List<Team> teamList = new ArrayList<>();
+        List<TeamDto> teamDtoList = new ArrayList<>();
         for(TeamsUnderEmployee teamUnderEmployee: teamsUnderEmployeeList)
         {
-            teamList.add(teamService.getTeamData(teamUnderEmployee.getTeamId()));
+
+            Team team = teamService.getTeamData(teamUnderEmployee.getTeamId());
+            Employee manager = employeeService.getEmployeeById(team.getManagerId());
+            TeamDto teamDto = new TeamDto(team.getId(), team.getTeamName(), team.getOeCode(), team.getManagerId(),
+                    manager.getUserName(), team.getTeamDescription());
+            teamDtoList.add(teamDto);
         }
-        return teamList;
+        return teamDtoList;
     }
 
 }
