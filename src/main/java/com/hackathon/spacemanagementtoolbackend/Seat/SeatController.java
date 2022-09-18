@@ -7,6 +7,8 @@ import com.hackathon.spacemanagementtoolbackend.teamManager.TeamManager;
 import com.hackathon.spacemanagementtoolbackend.teamManager.TeamManagerService;
 import com.hackathon.spacemanagementtoolbackend.teamfloorzone.TeamFloorZone;
 import com.hackathon.spacemanagementtoolbackend.teamfloorzone.TeamFloorZoneService;
+import com.hackathon.spacemanagementtoolbackend.zone.Zone;
+import com.hackathon.spacemanagementtoolbackend.zone.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +34,9 @@ public class SeatController {
 
     @Autowired
     TeamFloorZoneService teamFloorZoneService;
+
+    @Autowired
+    ZoneService zoneService;
 
     @GetMapping("/seats")
     public List<Seat> getSeats(@RequestParam("teamId") int teamId, @RequestParam("floorId") int floorId, @RequestParam("zoneId") int zoneId){
@@ -63,7 +68,10 @@ public class SeatController {
                 seatService.save(seat);
             }
             TeamFloorZone teamFloorZone = new TeamFloorZone(seatBookingDTO.getTeamId(),seatBookingDTO.getFloorId(),seatBookingDTO.getZoneId());
+            Zone zoneFromDb= zoneService.getZoneById(seatBookingDTO.getZoneId());
+            Zone zone = new Zone(seatBookingDTO.getFloorId(),seatBookingDTO.getTeamId(),zoneFromDb.getZoneName());
             teamFloorZoneService.save(teamFloorZone);
+            zoneService.saveZone(zone);
             return ResponseEntity.ok("Seats booked successfully");
         }
         catch (Exception e)

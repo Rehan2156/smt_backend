@@ -12,11 +12,20 @@ import javax.persistence.Id;
 public class Zone {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
+    private Integer id;
 
     private int floorId;
 
     private int teamId;
 
     private String zoneName;
+
+    public Zone(int floorId, int teamId, String zoneName) {
+        this.floorId = floorId;
+        this.teamId = teamId;
+        this.zoneName = zoneName;
+    }
+
+    public Zone() {
+    }
 }
