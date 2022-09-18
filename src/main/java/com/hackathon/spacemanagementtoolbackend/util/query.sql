@@ -74,34 +74,34 @@ INSERT INTO ZONE(floor_id, team_id, zone_name) values(2, 1, "B");
 
 
 
-INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 1, 1, 1, 6);
-INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 1, 2, 1, 6);
-INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 2, 1, 1, 6);
-INSERT INTO teamfloorzone(team_id, floor_id, zone_id, seat_from, seat_to) values (1, 2, 2, 1, 10);
+INSERT INTO teamfloorzone(team_id, floor_id, zone_id) values (1, 1, 1, 1, 6);
+INSERT INTO teamfloorzone(team_id, floor_id, zone_id) values (1, 1, 2, 1, 6);
+INSERT INTO teamfloorzone(team_id, floor_id, zone_id) values (1, 2, 1, 1, 6);
+INSERT INTO teamfloorzone(team_id, floor_id, zone_id) values (1, 2, 2, 1, 10);
 
 
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,1,1,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,1,2,false);
-INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked) values(1,1,1,4,false);
-INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,1,4,true);
-INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,1,6,false);
+INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked) values(1,1,1,3,false);
+INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,1,4,false);
+INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,1,5,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,1,6,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,2,1,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,2,2,false);
 INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked) values(1,1,2,3,false);
-INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,2,4,true);
+INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,2,4,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,2,5,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,1,2,6,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,1,1,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,1,2,false);
 INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked) values(1,2,1,3,false);
-INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,1,4,true);
+INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,1,4,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,1,5,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,1,6,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,2,1,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,2,2,false);
 INSERT INTO seat( team_id, floor_id, zone_id,  seat_number, booked) values(1,2,2,3,false);
-INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,2,4,true);
+INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,2,4,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,2,5,false);
 INSERT INTO seat( team_id, floor_id, zone_id, seat_number, booked) values(1,2,2,6,false);
 
