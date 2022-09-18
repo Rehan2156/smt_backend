@@ -25,7 +25,7 @@ public class TeamFloorZoneController {
     @Autowired
     ZoneService zoneService;
 
-    @GetMapping("/getFloors")
+//    @GetMapping("/getFloors")
     public List<Floor> getFloorByTeamId(@RequestParam("teamId") int teamId)
     {
         List<TeamFloorZone> teamFloorZoneList = teamFloorZoneService.getAllByTeamId(teamId);
@@ -41,7 +41,7 @@ public class TeamFloorZoneController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/getZones")
+//    @GetMapping("/getZones")
     public List<Zone> getZoneByTeamIdAndFloorId(@RequestParam("teamId") int teamId, @RequestParam("floorId") int floorId){
 
         return zoneService.getZoneData(teamId, floorId);

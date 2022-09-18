@@ -2,6 +2,8 @@ package com.hackathon.spacemanagementtoolbackend.Seat;
 
 import com.hackathon.spacemanagementtoolbackend.dto.SeatBookingDTO;
 import com.hackathon.spacemanagementtoolbackend.employee.EmployeeService;
+import com.hackathon.spacemanagementtoolbackend.floor.Floor;
+import com.hackathon.spacemanagementtoolbackend.floor.FloorService;
 import com.hackathon.spacemanagementtoolbackend.team.TeamService;
 import com.hackathon.spacemanagementtoolbackend.teamManager.TeamManager;
 import com.hackathon.spacemanagementtoolbackend.teamManager.TeamManagerService;
@@ -37,6 +39,9 @@ public class SeatController {
 
     @Autowired
     ZoneService zoneService;
+
+    @Autowired
+    FloorService floorService;
 
     @GetMapping("/seats")
     public List<Seat> getSeats(@RequestParam("teamId") int teamId, @RequestParam("floorId") int floorId, @RequestParam("zoneId") int zoneId){
@@ -81,6 +86,33 @@ public class SeatController {
 
     }
 
+    @GetMapping("/getFloors")
+    public List<Floor> getFloorByTeamId(@RequestParam("teamId") int teamId) {
+
+        List<Seat> seats = seatService.findSeatsByTeamId(teamId);
+        List<Floor> floors = new ArrayList<>();
+        for(Seat seat: seats){
+
+            Floor floor = floorService.getFloorData(seat.getFloorId());
+            floors.add(floor);
+        }
+        return  floors;
+    }
+
+    @GetMapping("/getZones")
+    public List<Zone> getZoneByTeamIdAndFloorId(@RequestParam("teamId") int teamId, @RequestParam("floorId") int floorId) {
+
+        List<Seat> seats = seatService.findSeatsByTeamIdAndFloorId(teamId, floorId);
+
+        List<Zone> zones = new ArrayList<>();
+
+        for(Seat seat: seats){
+            Zone zone = zoneService.getZoneById(seat.getZoneId());
+            zones.add(zone);
+
+        }
+        return zones;
+    }
 
 
-}
+    }

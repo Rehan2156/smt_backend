@@ -1,4 +1,4 @@
-package com.hackathon.spacemanagementtoolbackend.floor;
+package com.hackathon.spacemanagementtoolbackend.Seat;
 
 import com.hackathon.spacemanagementtoolbackend.Seat.Seat;
 import com.hackathon.spacemanagementtoolbackend.team.Team;
@@ -11,7 +11,12 @@ import java.util.List;
 public interface SeatRepository extends JpaRepository<Seat, Integer> {
 
     List<Seat> findAllByTeamIdAndFloorIdAndZoneId(int teamId, int floorId, int zoneId);
+    List<Seat> findAllByTeamIdAndFloorId(int teamId, int floorId);
 
     Seat findSeatById(int seatId);
+
+    List<Seat> findSeatByTeamId(Integer teamId);
+
+
 
 }

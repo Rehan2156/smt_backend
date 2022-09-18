@@ -1,6 +1,5 @@
 package com.hackathon.spacemanagementtoolbackend.Seat;
 
-import com.hackathon.spacemanagementtoolbackend.floor.SeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +25,15 @@ public class SeatService {
 
     public Seat save(Seat seat){
         return seatRepository.save(seat);
+    }
+
+    public List<Seat> findSeatsByTeamId(Integer teamId){
+        return seatRepository.findSeatByTeamId(teamId);
+    }
+
+    public List<Seat> findSeatsByTeamIdAndFloorId(Integer teamId, Integer floorId){
+
+        return seatRepository.findAllByTeamIdAndFloorId(teamId, floorId);
+
     }
 }
