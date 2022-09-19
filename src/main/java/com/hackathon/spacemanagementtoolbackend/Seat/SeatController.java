@@ -128,10 +128,10 @@ public class SeatController {
                 currSeat.setBooked(false);
                 updatedSeatList.add(currSeat);
                 List<Seat> seats = seatService.findSeatsByTeamIdFloorIdZoneIdAndSeatNumber(seatBookingDTO.getTeamId()
-                        , seatBookingDTO.getFloorId(), seatBookingDTO.getTeamId(), currSeat.getSeatNumber());
+                        , seatBookingDTO.getFloorId(), seatBookingDTO.getZoneId(), currSeat.getSeatNumber());
 
                 for (Seat seat : seats) {
-                    seatService.save(seat);
+                    seatService.deleteSeat(seat);
                 }
             }
 
