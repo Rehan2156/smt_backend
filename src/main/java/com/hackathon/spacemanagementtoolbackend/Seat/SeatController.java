@@ -136,9 +136,9 @@ public class SeatController {
             }
 
             seatService.saveAll(updatedSeatList);
-            employeeService.updateSeatCount(seatBookingDTO.getEmployeeId(), seatList.size(), false);
+            employeeService.updateSeatCount(seatBookingDTO.getEmployeeId(), seatList.size(), true);
             TeamManager team1 = teamManagerService.getTeamData(seatBookingDTO.getTeamId());
-            employeeService.updateSeatCount(team1.getTeamLeadId(), seatList.size(), true);
+            employeeService.updateSeatCount(team1.getTeamLeadId(), seatList.size(), false);
             return ResponseEntity.ok("Seats unallocated successfully");
 
         } catch (Exception e) {
